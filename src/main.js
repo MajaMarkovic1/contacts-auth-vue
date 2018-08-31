@@ -5,6 +5,7 @@ import Contacts from './pages/Contacts.vue'
 import AddContact from './pages/AddContact.vue'
 import Login from './pages/Login.vue'
 import MyDirectives from './plugins/MyDirectives'
+import { authService } from './services/Auth'
 
 Vue.config.productionTip = false
 
@@ -21,7 +22,17 @@ const routes = [
 
 const router = new VueRouter({
   routes,
-  mode: 'history'
+  mode: 'history',
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.name !== 'login' && !authService.isAuthenticated()){
+    next({path: 'login'})
+  } else if(to.name === 'login' && authService.isAuthenticated()) {
+    next({path: 'contacts'})
+  } else {
+    next()
+  }
 })
 
 new Vue({

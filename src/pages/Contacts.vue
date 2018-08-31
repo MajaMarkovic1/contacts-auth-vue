@@ -37,6 +37,14 @@ export default {
       })
   },
 
+  // beforeRouteEnter(to, from, next){
+  //   next()
+  // }, 
+  //
+  //ovde je onda potreban i created
+  //ako se koristi before... sa praznim next() i created onda se ucitava jedno po jedno
+  //u suprotnom se ucitava sve odjeednom
+
   methods: {
     deleteContact (id) {
       let index = this.contacts.findIndex(contact => contact.id === id)

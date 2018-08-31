@@ -14,16 +14,16 @@
   import { authService } from '../services/Auth'
 
   export default {
-    data() {
-      return {
-        isAuthenticated: authService.isAuthenticated()
-      }
+    props: {
+      isAuthenticated: Boolean
     },
 
     methods: {
       logout() {
         authService.logout()
-        this.isAuthenticated = false
+        // this.isAuthenticated = false
+        this.$emit('userAuthenticated')
+        this.$router.push({name: 'login'})
       }
     }
   }

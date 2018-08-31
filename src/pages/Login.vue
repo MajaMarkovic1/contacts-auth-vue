@@ -24,6 +24,7 @@
       login() {
         authService.login(this.email, this.password)
           .then(() => {
+            this.$emit('userAuthenticated', true)
             this.$router.push({ name: 'contacts' })
           })
       }

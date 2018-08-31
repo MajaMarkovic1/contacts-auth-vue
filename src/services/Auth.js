@@ -7,7 +7,7 @@ export default class Auth {
   }
 
   isAuthenticated(){
-    return localStorage.getItem('token')
+    return !!localStorage.getItem('token')
   }
 
   logout(){
